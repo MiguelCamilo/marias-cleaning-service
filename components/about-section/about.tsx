@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 
+import cleaning from '@/public/cleaning.png'
 import { ContactUsButton } from '@/components/about-section/contact-button';
 
 const AboutSection = () => {
@@ -24,12 +25,12 @@ const AboutSection = () => {
 
       {/* image */}
       <div className="">        
-        {/* <Image 
+        <Image 
             alt="Maid Cleaning Cartoon" 
-            src={'/src/cleaning.jpg'} 
+            src={cleaning} 
             height={500}
-            width={500}
-        /> */}
+            width={500}          
+        />
       </div>
     </div>
   );
