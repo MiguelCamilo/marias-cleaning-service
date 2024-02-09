@@ -81,20 +81,24 @@ body,
   }
 }
 
+/* waves svg for services divider */
 .wave {
+  z-index: -1;
   position: absolute;
-  top: 0;
+  bottom: -16rem;
   left: 0;
   width: 100%;
   overflow: hidden;
   line-height: 0;
+  transform: rotate(180deg);
 }
 
 .wave svg {
   position: relative;
   display: block;
   width: calc(111% + 1.3px);
-  height: 226px;  
+  height: 226px;
+  transform: rotateY(180deg);
 }
 
 .wave .shape-fill {

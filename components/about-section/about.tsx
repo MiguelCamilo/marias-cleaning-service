@@ -7,7 +7,7 @@ import { ContactUsButton } from '@/components/about-section/contact-button';
 
 const AboutSection = () => {
   return (
-    <div className="flex flex-row mt-20">
+    <div className="flex flex-row mt-20">        
       {/* paragraph */}
       <div className="flex flex-col w-full lg:w-3/5 space-y-5 p-20">
         <article className="text-balance text-lg lg:text-4xl font-medium leading-normal text-slate-700">
