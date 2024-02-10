@@ -7,9 +7,9 @@ import { Button } from '@/components/ui/button';
 
 interface ContactUsButtonProps {
   icon?: IconType;
+  onClick?: () => void;
   iconClassName?: string;
   className: string;
-  href: string;
   label: string;
   disabled?: boolean;
   variant?:
@@ -24,7 +24,7 @@ interface ContactUsButtonProps {
 }
 
 export const ContactUsButton = ({
-  href,
+  onClick,
   className,
   label,
   disabled,
@@ -33,21 +33,22 @@ export const ContactUsButton = ({
   iconClassName,
 }: ContactUsButtonProps) => {
   return (
-    <div className='w-full'>
-      <Link href={href}>
-        <Button
-          variant={variant || 'link'}
-          className={className}
-          size={'sm'}
-          asChild
-          disabled={disabled}
-        >
-          <div className='flex'>
-            {label}
-            {ContactUsButtonIcon && <ContactUsButtonIcon className={iconClassName} />}
-          </div>
-        </Button>
-      </Link>
+    <div className="w-full">
+      <Button
+        variant={variant || 'link'}
+        className={className}
+        size={'sm'}
+        asChild
+        disabled={disabled}
+        onClick={onClick}
+      >
+        <div className="flex">
+          {label}
+          {ContactUsButtonIcon && (
+            <ContactUsButtonIcon className={iconClassName} />
+          )}
+        </div>
+      </Button>
     </div>
   );
 };
