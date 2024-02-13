@@ -24,17 +24,13 @@ const NavMenu = () => {
       name: 'Home',
       href: '/',
     },
-    // {
-    //     name: 'About',
-    //     href: '/'
-    // },
     {
       name: 'Services',
       href: '/',
     },
     {
       name: 'Contact',
-      href: '/',
+      href: '/contact',
     },
   ];
 
@@ -52,6 +48,7 @@ const NavMenu = () => {
             alt="Business logo name"
             src={logo}
             className="w-[400px] h-[400px]"
+            priority
           />
         </div>
         <NavigationMenu>

@@ -29,16 +29,12 @@ const MobileNav = () => {
         href: '/'
     },
     // {
-    //     name: 'About',
+    //     name: 'Services',
     //     href: '/'
     // },
     {
-        name: 'Services',
-        href: '/'
-    },
-    {
         name: 'Contact',
-        href: '/'
+        href: '/contact'
     },
   ];
 

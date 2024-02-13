@@ -17,7 +17,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       {/* iOS Safari */}
-      <meta name='theme-color' content='#ffd587' />
+      {/* <meta name='theme-color' content='#ffd587' /> */}
       <body className={noto_sans.className}>{children}</body>
     </html>
   );

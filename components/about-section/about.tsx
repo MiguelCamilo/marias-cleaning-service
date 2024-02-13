@@ -2,19 +2,20 @@
 
 import * as React from 'react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import { FaAsterisk } from 'react-icons/fa';
 
 import cleaning from '@/public/cleaning.png';
-import ContactModal from '../modals/contact-modal';
 import { ContactUsButton } from '@/components/about-section/contact-button';
 
-const AboutSection = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean | undefined>(false);
+interface AboutSectionProps {
+  onContactModalClick: () => void;
+}
 
-  const onContactModalClick = () => {
-    setIsOpen(!isOpen);
-  };
+
+const AboutSection = ({ onContactModalClick } : AboutSectionProps) => {
+  const router = useRouter();
 
   return (
     <div className="flex sm:flex-row flex-col mt-20">
@@ -32,10 +33,13 @@ const AboutSection = () => {
           variant={'outline'}
           className="w-full lg:w-[75%] text-[#ffa600] hover:cursor-pointer"
           label="Schedule an Appointment"
-          onClick={onContactModalClick}
+          onClick={() => {
+            router.push('/contact');
+            // onContactModalClick();
+          }}
           // icon={MdOutlineArrowCircleRight}
         />
-        <ContactModal onOpen={onContactModalClick} isOpen={isOpen} />
+        {/* <ContactModal onOpen={onContactModalClick} isOpen={isOpen} /> */}
       </div>
 
       {/* image */}

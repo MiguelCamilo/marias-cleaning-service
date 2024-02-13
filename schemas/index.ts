@@ -15,4 +15,5 @@ export const ContactFormSchema = z.object({
     .max(10, { message: 'Please enter a valid phone number.' })
     .trim(),
   service: z.string(),
+  clientMessage: z.string().optional(),
 });

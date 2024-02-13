@@ -9,6 +9,7 @@ import { useForm } from 'react-hook-form';
 import { sendContactFormEmail } from '@/lib/mail';
 import { ContactFormSchema } from '@/schemas';
 
+import { BarLoader } from 'react-spinners';
 import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 import {
@@ -22,6 +23,7 @@ import {
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -33,7 +35,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from "@/components/ui/select"
+} from '@/components/ui/select';
+import { ScrollArea } from '@/components/ui/scroll-area';
+import { Textarea } from "@/components/ui/textarea"
 
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
@@ -57,8 +61,9 @@ const ContactModal = ({ onOpen, isOpen }: ContactModalProps) => {
       email: '',
       phoneNumber: '',
       service: '',
+      clientMessage: '',
     },
-  });
+  });  
 
   const handleFormSubmit = (values: z.infer<typeof ContactFormSchema>) => {
     setError('');
@@ -69,18 +74,58 @@ const ContactModal = ({ onOpen, isOpen }: ContactModalProps) => {
         values.email,
         values.name,
         values.phoneNumber,
-        values.service
+        values.service,
+        values.clientMessage,
       ).then((data) => {
         setError(data?.error);
         setSuccess(data?.success);
+        if (data?.success) {
+          form.reset();
+          
+          const timeoutId = setTimeout(() => {
+            setError('');
+            setSuccess('');
+          }, 5000)
+
+          return () => clearTimeout(timeoutId);
+        }
       });
     });
   };
 
+  React.useEffect(() => {
+    let timeoutId: NodeJS.Timeout;
+     
+    //set up the timeout when the component mounts
+    timeoutId = setTimeout(() => {
+      setError('');
+      setSuccess('');
+    },  5000);
+     
+    //clear the timeout when the component unmounts
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, []);
+  
+
   return (
     <Dialog open={isOpen}>
       <DialogTrigger onClick={onOpen} />
-      <DialogContent>
+      {success ? (
+        <DialogContent className="flex flex-col items-center justify-center space-y-8">
+          <DialogHeader>
+            <DialogTitle className="text-center text-slate-700">
+              Thank you for contacting us!
+            </DialogTitle>
+          </DialogHeader>
+          <DialogDescription>
+            <FormSuccess message={success} />
+          </DialogDescription>
+        </DialogContent>
+        
+      ) : (
+        <DialogContent className='mt-4 sm:mt-0'>
         <DialogTitle className="text-center text-slate-700">
           <IoMdCloseCircleOutline
             onClick={onOpen}
@@ -88,99 +133,11 @@ const ContactModal = ({ onOpen, isOpen }: ContactModalProps) => {
           />
           Contact Us to Schedule Your Next Cleaning!
         </DialogTitle>
-        <DialogDescription className="">
-          <Form {...form}>
-            <form
-              onSubmit={form.handleSubmit(handleFormSubmit)}
-              className="space-y-6"
-            >
-              <div className="space-y-4">
-                {/* name */}
-                <FormField
-                  control={form.control}
-                  name="name"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Full Name</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="Name"
-                        />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* email */}
-                <FormField
-                  control={form.control}
-                  name="email"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Email</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="email.here@example.com"
-                        />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* phone-number */}
-                <FormField
-                  control={form.control}
-                  name="phoneNumber"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Phone Number</FormLabel>
-                      <FormControl>
-                        <Input
-                          {...field}
-                          disabled={isPending}
-                          placeholder="123-456-7890"
-                        />
-                      </FormControl>
-
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
-
-                {/* service */}
-                <FormField
-                  control={form.control}
-                  name="service"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormLabel>Services:</FormLabel>
-                      <Select
-                        onValueChange={field.onChange}
-                        defaultValue={field.value}
-                      >
-                        <FormControl>
-                          <SelectTrigger>
-                            <SelectValue placeholder="Select a service you're looking for" />
-                          </SelectTrigger>
-                          {/* TODO: finish adding options */}
-                        </FormControl>
-                      </Select>
-                    </FormItem>
-                  )}
-                  />
-              </div>
-            </form>
-          </Form>
+        <DialogDescription>
+          
         </DialogDescription>
       </DialogContent>
+      )}
     </Dialog>
   );
 };
