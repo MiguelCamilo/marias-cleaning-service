@@ -41,9 +41,7 @@ import { Button } from '@/components/ui/button';
 import { FormError } from '@/components/form-error';
 import { FormSuccess } from '@/components/form-success';
 
-import Image from 'next/image';
-import leftSideBlob from '@/public/left-side-blob.svg';
-import logo from '@/public/logo.svg';
+import { IoMdCloseCircleOutline } from 'react-icons/io';
 
 const ContactPage = () => {
   const [isPending, startTransition] = React.useTransition();
@@ -108,10 +106,12 @@ const ContactPage = () => {
 
   return (
     <div>
+      <IoMdCloseCircleOutline
+        onClick={() => router.back()}
+        className="h-6 w-6 sm:h-8 sm:w-8 absolute -top-1.5 sm:-top-0 bottom-0 -right-5 sm:right-0 m-5 hover:cursor-pointer text-slate-700 hover:box-shadow-lg rounded-full"
+      />
 
-        {/* TODO: ADD BACK ARROW USING ROUTER.BACK */}
-
-      <h2 className="h-0 absolute top-10 right-0 bottom-0 left-0 text-center text-2xl text-[#ffa600] font-bold">
+      <h2 className="h-0 absolute top-3 sm:top-10 right-0 bottom-0 left-0 text-center text-xl sm:text-2xl text-[#ffa600] font-bold">
         Contact Us to Schedule Your Next Cleaning!
       </h2>
       {/* <Image
