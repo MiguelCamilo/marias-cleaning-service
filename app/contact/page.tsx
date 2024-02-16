@@ -81,6 +81,7 @@ const ContactPage = () => {
           const timeoutId = setTimeout(() => {
             setError('');
             setSuccess('');
+            router.back();
           }, 5000);          
 
           return () => clearTimeout(timeoutId);
@@ -91,7 +92,6 @@ const ContactPage = () => {
 
   React.useEffect(() => {
     let timeoutId: NodeJS.Timeout;
-
     //set up the timeout when the component mounts
     timeoutId = setTimeout(() => {
       setError('');
