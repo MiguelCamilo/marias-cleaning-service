@@ -32,7 +32,7 @@ const AboutSection = ({ onContactModalClick } : AboutSectionProps) => {
         <ContactUsButton
           variant={'outline'}
           className="w-full lg:w-[75%] text-[#ffa600] hover:cursor-pointer"
-          label="Schedule an Appointment"
+          label="Contact Us to Schedule an Appointment"
           onClick={() => {
             router.push('/contact');
             // onContactModalClick();

@@ -41,7 +41,7 @@ import { Button } from '@/components/ui/button';
 import { FormError } from '@/components/form-error';
 import { FormSuccess } from '@/components/form-success';
 
-import { IoMdCloseCircleOutline } from 'react-icons/io';
+import { IoMdArrowRoundBack } from 'react-icons/io';
 
 const ContactPage = () => {
   const [isPending, startTransition] = React.useTransition();
@@ -81,7 +81,7 @@ const ContactPage = () => {
           const timeoutId = setTimeout(() => {
             setError('');
             setSuccess('');
-          }, 5000);
+          }, 5000);          
 
           return () => clearTimeout(timeoutId);
         }
@@ -106,24 +106,19 @@ const ContactPage = () => {
 
   return (
     <div>
-      <IoMdCloseCircleOutline
+      <IoMdArrowRoundBack
         onClick={() => router.back()}
-        className="h-6 w-6 sm:h-8 sm:w-8 absolute -top-1.5 sm:-top-0 bottom-0 -right-5 sm:right-0 m-5 hover:cursor-pointer text-slate-700 hover:box-shadow-lg rounded-full"
+        className="sm:hidden flex h-6 w-6 absolute left-10 top-0"
       />
 
-      <h2 className="h-0 absolute top-3 sm:top-10 right-0 bottom-0 left-0 text-center text-xl sm:text-2xl text-[#ffa600] font-bold">
+      <h2 className="hidden sm:flex text-center text-xl sm:text-2xl text-[#ffa600] font-bold">
         Contact Us to Schedule Your Next Cleaning!
       </h2>
-      {/* <Image
-        src={logo}
-        alt="Orange Blob"
-        className="h-10 w-10 absolute -top-[10rem] bottom-0 sm:-left-20 left-10 right-0 z-10"
-      /> */}
 
       <Form {...form}>
         <form
           onSubmit={form.handleSubmit(handleFormSubmit)}
-          className="space-y-6 p-5 mt-5"
+          className="space-y-6 p-10 sm:p-5 mt-20 sm:mt-5"
         >
           {/* name */}
           <FormField
@@ -256,66 +251,17 @@ const ContactPage = () => {
             Submit
           </Button>
         </form>
+        <Button            
+            variant={'outline'}
+            className="hidden sm:flex w-[92%] ml-5"
+            disabled={isPending}
+            onClick={() => router.back()}
+          >
+            Cancel
+          </Button>
       </Form>
     </div>
   );
 };
 
 export default ContactPage;
-
-{
-  /* <form className="fixed inset-0 p-8 bg-white rounded-lg shadow-md px-4">
-<div className="flex justify-between items-center mb-6">
-  <h2 className="text-2xl font-bold">
-    Contact Us to Schedule Your Next Cleaning!
-  </h2>
-</div>
-<form className="px-4">
-  <div className="mb-4">
-    <label className="block text-sm font-medium mb-1" htmlFor="full-name">
-      Full Name
-    </label>
-    <Input id="full-name" placeholder="Name" />
-  </div>
-  <div className="mb-4">
-    <label className="block text-sm font-medium mb-1" htmlFor="email">
-      Email
-    </label>
-    <Input id="email" placeholder="email.here@example.com" type="email" />
-  </div>
-  <div className="mb-4">
-    <label
-      className="block text-sm font-medium mb-1"
-      htmlFor="phone-number"
-    >
-      Phone Number
-    </label>
-    <Input id="phone-number" placeholder="123-456-7890" type="tel" />
-  </div>
-  <div className="mb-4">
-    <label className="block text-sm font-medium mb-1" htmlFor="services">
-      Services
-    </label>
-    <Select>
-      <SelectTrigger id="services">
-        <SelectValue placeholder="Select a service you're looking for" />
-      </SelectTrigger>
-      <SelectContent position="popper">
-        <SelectItem value="service1">Service 1</SelectItem>
-        <SelectItem value="service2">Service 2</SelectItem>
-        <SelectItem value="service3">Service 3</SelectItem>
-      </SelectContent>
-    </Select>
-  </div>
-  <div className="mb-6">
-    <label className="block text-sm font-medium mb-1" htmlFor="message">
-      Please let us know details of the location you want cleaned:
-    </label>
-    <Textarea id="message" placeholder="Message" />
-  </div>
-  <Button className="w-full bg-yellow-400 hover:bg-yellow-500 text-white">
-    Submit
-  </Button>
-</form>
-</form> */
-}

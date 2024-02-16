@@ -50,9 +50,9 @@ const Services = () => {
           <Image
             src={houseSVG}
             alt="window cleaning illustration"
-            className="sm:h-[400px] w-[400px]"
+            className="sm:h-[250px] w-[250px]"
           />
-          <span className="relative left-12 sm:left-10 right-0 bottom-0 -top-8 sm:-top-32 text-xl sm:text-3xl font-medium text-slate-700">
+          <span className="text-center text-xl sm:text-3xl font-medium text-slate-700">
             House Cleaning
           </span>
         </div>
@@ -61,9 +61,9 @@ const Services = () => {
           <Image
             src={bathtubSVG}
             alt="window cleaning illustration"
-            className="sm:h-[400px] w-[400px]"
+            className="sm:h-[250px] w-[250px]"
           />
-          <span className="relative left-20 right-0 bottom-0 -top-8 sm:-top-32 text-xl sm:text-3xl font-medium text-slate-700">
+          <span className="text-center text-xl sm:text-3xl font-medium text-slate-700">
             Bathrooms
           </span>
         </div>
@@ -72,9 +72,9 @@ const Services = () => {
           <Image
             src={vacuumSVG}
             alt="window cleaning illustration"
-            className="sm:h-[400px] w-[400px]"
+            className="sm:h-[250px] w-[250px]"
           />
-          <span className="relative left-10 right-0 bottom-0 -top-8 sm:-top-32 text-xl sm:text-3xl font-medium text-slate-700">
+          <span className="text-center text-xl sm:text-3xl font-medium text-slate-700">
             Floors & Carpets
           </span>
         </div>
@@ -83,9 +83,9 @@ const Services = () => {
           <Image
             src={windowSVG}
             alt="window cleaning illustration"
-            className="sm:h-[400px] w-[400px]"
+            className="sm:h-[250px] w-[250px]"
           />
-          <span className="relative left-20 right-0 bottom-0 -top-8 sm:-top-32 text-xl sm:text-3xl font-medium text-slate-700">
+          <span className="text-center text-xl sm:text-3xl font-medium text-slate-700">
             Windows
           </span>
         </div>
